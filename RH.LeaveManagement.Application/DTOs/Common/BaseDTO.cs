@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RH.LeaveManagement.Application.DTOs.Common
 {
-    public abstract class BaseDTO
+    public abstract class BaseDto
     {
         public int Id { get; set; }
     }

@@ -5,13 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RH.LeaveManagement.Application.DTOs
+namespace RH.LeaveManagement.Application.DTOs.LeaveAllocation
 {
-    public class LeaveAllocationDTO: BaseDTO
+    public class UpdateLeaveAllocationDto: BaseDto
     {
         public int NumberOfDays { get; set; }
-        public LeaveTypeDTO? LeaveType { get; set; }
         public int LeaveTypeId { get; set; }
         public int Period { get; set; }
+
+        // Additional properties can be added here if needed
+        // For example, you might want to include a property for the employee ID
+        // public int EmployeeId { get; set; }
     }
 }
