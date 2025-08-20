@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using HR.LeaveManagement.Domain;
 using MediatR;
+using RH.LeaveManagement.Application.Exceptions;
 using RH.LeaveManagement.Application.Features.LeaveRequests.Requests.Commands;
 using RH.LeaveManagement.Application.Persistence.Contracts;
 using System;
@@ -24,6 +26,9 @@ namespace RH.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
         public async Task<Unit> Handle(DeleteLeaveRequestCommand request, CancellationToken cancellationToken)
         {
             var leaveRequest = await _leaveRequestRepository.Get(request.Id);
+
+            if (leaveRequest is null)
+                throw new NotFoundException(nameof(leaveRequest), request.Id);
 
             await _leaveRequestRepository.Delete(leaveRequest.Id); 
 

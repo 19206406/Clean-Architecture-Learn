@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RH.LeaveManagement.Application.DTOs.LeaveType.Validators
 {
-    public class CreateLeaveTypeDtoValidator : AbstractValidator<CreateLeaveTypeDto>
+    public class CreateLeaveTypeDtoValidator : AbstractValidator<LeaveTypeDto>
     {
         public CreateLeaveTypeDtoValidator()
         {

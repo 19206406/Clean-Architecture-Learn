@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HR.LeaveManagement.Application.DTOs.LeaveRequest.Validators
 {
-    public class CreateLeaveRequestDtoValidator : AbstractValidator<CreateLeaveRequestDto>
+    public class CreateLeaveRequestDtoValidator : AbstractValidator<LeaveRequestDto>
     {
         private readonly ILeaveTypeRepository _leaveTypeRepository;
 
