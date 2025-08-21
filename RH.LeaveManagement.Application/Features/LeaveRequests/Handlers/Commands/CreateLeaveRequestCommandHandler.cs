@@ -2,8 +2,10 @@
 using HR.LeaveManagement.Application.DTOs.LeaveRequest.Validators;
 using HR.LeaveManagement.Domain;
 using MediatR;
+using RH.LeaveManagement.Application.Contracts.Infrastructure;
 using RH.LeaveManagement.Application.Exceptions;
 using RH.LeaveManagement.Application.Features.LeaveRequests.Requests.Commands;
+using RH.LeaveManagement.Application.Models;
 using RH.LeaveManagement.Application.Persistence.Contracts;
 using RH.LeaveManagement.Application.Responses;
 using System;
@@ -18,15 +20,18 @@ namespace RH.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
     {
         private readonly ILeaveRequestRepository _leaveRequestRepository;
         private readonly ILeaveTypeRepository _leaveTypeRepository;
+        private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
 
         public CreateLeaveRequestCommandHandler(
             ILeaveRequestRepository leaveRequestRepository,
             ILeaveTypeRepository leaveTypeRepository, 
+            IEmailSender emailSender,
             IMapper mapper)
         {
             _leaveRequestRepository = leaveRequestRepository;
             _leaveTypeRepository = leaveTypeRepository;
+            _emailSender = emailSender;
             _mapper = mapper;
         }
 
@@ -50,6 +55,22 @@ namespace RH.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
             response.Success = true;
             response.Message = "Creation Successful"; 
             response.Id = leaveRequest.Id;
+
+            var email = new Email
+            {
+                To = "employee@org.com",
+                Body = $"Your leave request for {request.LeaveRequestDto.StartDate} to {request.LeaveRequestDto.EndDate} "
+                + $"has been submitted succesfully"
+            }; 
+            try
+            {
+                await _emailSender.SendEmail(email);
+            }
+            catch (Exception ex)
+            {
+                /// log the exception 
+            }
+
             return response; 
         }
     }
