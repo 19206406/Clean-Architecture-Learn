@@ -31,7 +31,7 @@ namespace RH.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
             if (leaveType is null)
                 throw new NotFoundException(nameof(leaveType), request.Id); 
 
-            await _leaveRequestRepository.Delete(leaveType.Id);
+            await _leaveRequestRepository.Delete(leaveType);
 
             return Unit.Value;
         }

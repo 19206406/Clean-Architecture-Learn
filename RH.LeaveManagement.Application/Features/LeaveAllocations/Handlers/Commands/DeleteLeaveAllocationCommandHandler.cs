@@ -30,7 +30,7 @@ namespace RH.LeaveManagement.Application.Features.LeaveAllocations.Handlers.Comm
             if (leaveAllocation is null)
                 throw new NotFoundException(nameof(leaveAllocation), request.Id);
 
-            await _leaveAllocationRepository.Delete(leaveAllocation.Id); 
+            await _leaveAllocationRepository.Delete(leaveAllocation); 
 
             return Unit.Value;
         }

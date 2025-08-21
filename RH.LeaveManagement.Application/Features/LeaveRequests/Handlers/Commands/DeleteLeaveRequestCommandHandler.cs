@@ -30,7 +30,7 @@ namespace RH.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
             if (leaveRequest is null)
                 throw new NotFoundException(nameof(leaveRequest), request.Id);
 
-            await _leaveRequestRepository.Delete(leaveRequest.Id); 
+            await _leaveRequestRepository.Delete(leaveRequest); 
 
             return Unit.Value;
         }
