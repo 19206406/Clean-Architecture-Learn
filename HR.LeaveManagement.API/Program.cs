@@ -21,6 +21,14 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.Lifetime.ApplicationStarted.Register(() =>
+{
+    foreach (var address in app.Urls)
+    {
+        Console.WriteLine($"Swagger disponible en: {address}/swagger");
+    }
+});
+
 app.UseSwagger();
 
 app.UseSwaggerUI(); 
