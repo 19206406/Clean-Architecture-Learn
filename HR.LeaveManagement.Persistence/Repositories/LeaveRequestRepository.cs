@@ -11,9 +11,9 @@ namespace HR.LeaveManagement.Persistence.Repositories
 {
     public class LeaveRequestRepository : GenericRepository<LeaveRequest>, ILeaveRequestRepository
     {
-        private readonly LeaveMangamentDbContext _dbContext;
+        private readonly LeaveManagamentDbContext _dbContext;
 
-        public LeaveRequestRepository(LeaveMangamentDbContext dbContext): base(dbContext)
+        public LeaveRequestRepository(LeaveManagamentDbContext dbContext): base(dbContext)
         {
             _dbContext = dbContext;
         }

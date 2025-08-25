@@ -10,9 +10,9 @@ namespace HR.LeaveManagement.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly LeaveMangamentDbContext _dbContext;
+        private readonly LeaveManagamentDbContext _dbContext;
 
-        public GenericRepository(LeaveMangamentDbContext dbContext)
+        public GenericRepository(LeaveManagamentDbContext dbContext)
         {
             _dbContext = dbContext;
         }

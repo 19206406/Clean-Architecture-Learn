@@ -10,9 +10,9 @@ namespace HR.LeaveManagement.Persistence.Repositories
 {
     public class LeaveTypeRepository : GenericRepository<LeaveType>, ILeaveTypeRepository
     {
-        private readonly LeaveMangamentDbContext _dbContext;
+        private readonly LeaveManagamentDbContext _dbContext;
 
-        public LeaveTypeRepository(LeaveMangamentDbContext dbContext) : base(dbContext)
+        public LeaveTypeRepository(LeaveManagamentDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

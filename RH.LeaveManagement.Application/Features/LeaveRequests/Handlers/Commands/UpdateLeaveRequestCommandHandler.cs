@@ -34,16 +34,16 @@ namespace RH.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
         public async Task<Unit> Handle(UpdateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
             var validator = new UpdateLeaveRequestDtoValidator(_leaveTypeRepository);
-            var validatonResult = await validator.ValidateAsync(request.leaveRequestsDto!);
+            var validatonResult = await validator.ValidateAsync(request.LeaveRequestDto!);
 
             if (validatonResult.IsValid == false)
                 throw new ValidationException(validatonResult); 
 
             var leaveRequest = await _leaveRequestRepository.Get(request.Id);
 
-            if (request.leaveRequestsDto is not null)
+            if (request.LeaveRequestDto is not null)
             {
-                _mapper.Map(request.leaveRequestsDto, leaveRequest);
+                _mapper.Map(request.LeaveRequestDto, leaveRequest);
 
                 await _leaveRequestRepository.Update(leaveRequest);
             }
